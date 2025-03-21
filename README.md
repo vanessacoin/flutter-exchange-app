@@ -1,16 +1,21 @@
 # exchange_app
 
-A new Flutter project.
+Requisitos
+- SplashScreen
+- Usar um Theme do Material  (Material Theme Builder)
+- Uso de Imagens
+- Consumo de API
+- Gerenciamento de estado
+- SQFlite
 
-## Getting Started
+## 🔧 Configuração do Ambiente
 
-This project is a starting point for a Flutter application.
+Antes de rodar o projeto, você precisa configurar as variáveis de ambiente.
 
-A few resources to get you started if this is your first Flutter project:
+1. **Crie um arquivo `.env` na raiz do projeto.**
+2. **Copie o conteúdo do `.env.example` para o `.env`.**
+3. **Adicione sua chave de API no lugar de `your_api_key_here`.**
+Exemplo: API_ACCESS_KEY=seu_token_aqui
+4. **Agora, carregue o `.env` no seu app rodando:**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🚀 Pronto! Agora você pode usar a API de câmbio no app.
