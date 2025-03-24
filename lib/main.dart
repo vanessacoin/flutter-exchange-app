@@ -3,10 +3,22 @@ import 'package:flutter/material.dart';
 import 'util.dart';
 import 'theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:exchange_app/providers/exchange_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ExchangeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

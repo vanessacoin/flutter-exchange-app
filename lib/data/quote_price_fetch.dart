@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -14,15 +15,27 @@ class QuotePriceFetcher {
         'http://api.exchangeratesapi.io/v1/latest?access_key=$apiKey');
 
     try {
+      if (kDebugMode) {
+        print('Buscando dados da API: $url');
+      }
+
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseJson = jsonDecode(response.body);
 
+        if (kDebugMode) {
+          print('Resposta da API: $responseJson');
+        }
+
         if (responseJson['success'] == true) {
           final Map<String, double> rates =
           (responseJson['rates'] as Map<String, dynamic>)
               .map((key, value) => MapEntry(key, value.toDouble()));
+
+          if (kDebugMode) {
+            print('Taxas de câmbio: $rates');
+          }
 
           return rates;
         } else {
@@ -32,6 +45,9 @@ class QuotePriceFetcher {
         throw Exception('Falha ao carregar dados: Código ${response.statusCode}');
       }
     } catch (e) {
+      if (kDebugMode) {
+        print('Erro na requisição: $e');
+      }
       throw Exception('Erro na requisição: $e');
     }
   }
