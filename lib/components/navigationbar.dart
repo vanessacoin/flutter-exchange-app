@@ -25,7 +25,7 @@ class CustomNavigationBar extends StatelessWidget {
       ),
       child: NavigationBarTheme(
         data: NavigationBarThemeData(
-          indicatorColor: colors.primaryContainer,
+          indicatorColor: colors.onSecondaryFixedVariant,
           labelTextStyle: MaterialStateProperty.all(
             TextStyle(color: Colors.white),
           ),
