@@ -133,9 +133,27 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 ),
               ),
               const SizedBox(height: 20),
-              _buildCurrencyCard("USD", "Dólar Americano", "💵"),
-              _buildCurrencyCard("EUR", "Euro", "💶"),
-              _buildCurrencyCard("GBP", "Libra Esterlina", "💷"),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _buildCurrencyCard("USD", "Dólar Americano", "🇺🇸"),
+                      _buildCurrencyCard("EUR", "Euro", "🇪🇺"),
+                      _buildCurrencyCard("GBP", "Libra Esterlina", "🇬🇧"),
+                      _buildCurrencyCard("CAD", "Dólar Canadense", "🇨🇦"),
+                      _buildCurrencyCard("AUD", "Dólar Australiano", "🇦🇺"),
+                      _buildCurrencyCard("JPY", "Iene Japonês", "¥"),
+                      _buildCurrencyCard("CHF", "Franco Suíço", "🇨🇭"),
+                      _buildCurrencyCard("CNY", "Yuan Chinês", "🇨🇳"),
+                      _buildCurrencyCard("INR", "Rupia Indiana", "🇮🇳"),
+                      _buildCurrencyCard("BRL", "Real Brasileiro", "🇧🇷"),
+                      _buildCurrencyCard("HKD", "Dólar de Hong Kong", "🇭🇰"),
+                      _buildCurrencyCard("SGD", "Dólar de Cingapura", "🇸🇬"),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -84,7 +84,7 @@ class _HistoricalScreenState extends State<HistoricalScreen> {
           )
               : ListView.builder(
             padding: EdgeInsets.fromLTRB(
-                16, kToolbarHeight + 32, 16, 16),
+                16, kToolbarHeight + 10, 16, 16),
             itemCount: _history.length,
             itemBuilder: (context, index) {
               final item = _history[index];
@@ -102,7 +102,11 @@ class _HistoricalScreenState extends State<HistoricalScreen> {
                   ),
                   subtitle: Text(
                     'Convertido: ${item['convertedAmount'].toStringAsFixed(2)} | $formattedDate',
-                    style: TextStyle(color: colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                        color: colorScheme.onSurfaceVariant,
+                        fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               );

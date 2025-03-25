@@ -7,6 +7,12 @@ class ExchangeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ExchangeProvider>(context, listen: false);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      provider.resetConvertedAmount();
+    });
+
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -147,6 +153,21 @@ class ExchangeScreen extends StatelessWidget {
       ValueChanged<String?> onChanged,
       ColorScheme colorScheme,
       ) {
+    List<Map<String, String>> currencies = [
+      {"currency": "USD", "name": "USD", "flag": "🇺🇸"},
+      {"currency": "EUR", "name": "EUR", "flag": "🇪🇺"},
+      {"currency": "GBP", "name": "GBP", "flag": "🇬🇧"},
+      {"currency": "CAD", "name": "CAD", "flag": "🇨🇦"},
+      {"currency": "AUD", "name": "AUD", "flag": "🇦🇺"},
+      {"currency": "JPY", "name": "JPY", "flag": "🇯🇵"},
+      {"currency": "CHF", "name": "CHF", "flag": "🇨🇭"},
+      {"currency": "CNY", "name": "CNY", "flag": "🇨🇳"},
+      {"currency": "INR", "name": "INR", "flag": "🇮🇳"},
+      {"currency": "BRL", "name": "BRL", "flag": "🇧🇷"},
+      {"currency": "HKD", "name": "HKD", "flag": "🇭🇰"},
+      {"currency": "SGD", "name": "SGD", "flag": "🇸🇬"},
+    ];
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -156,13 +177,22 @@ class ExchangeScreen extends StatelessWidget {
       child: DropdownButton<String>(
         value: value,
         onChanged: onChanged,
-        items: ['USD', 'EUR', 'BRL', 'GBP']
+        items: currencies
             .map(
               (currency) => DropdownMenuItem(
-            value: currency,
-            child: Text(
-              currency,
-              style: TextStyle(color: colorScheme.onSurface),
+            value: currency["currency"],
+            child: Row(
+              children: [
+                Text(
+                  currency["flag"]!,
+                  style: TextStyle(fontSize: 20),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  currency["name"]!,
+                  style: TextStyle(color: colorScheme.onSurface),
+                ),
+              ],
             ),
           ),
         )

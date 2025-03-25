@@ -29,6 +29,11 @@ class ExchangeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetConvertedAmount() {
+    _convertedAmount = 0.0;
+    notifyListeners();
+  }
+
   Future<void> convertCurrency() async {
     String url =
         'https://economia.awesomeapi.com.br/json/last/$_fromCurrency-$_toCurrency';
