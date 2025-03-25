@@ -23,26 +23,33 @@ class CustomNavigationBar extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: NavigationBar(
-        onDestinationSelected: onItemTapped,
-        selectedIndex: selectedIndex,
-        destinations: <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.attach_money, color: colors.onPrimary),
-            label: 'Cotação',
+      child: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: colors.primaryContainer,
+          labelTextStyle: MaterialStateProperty.all(
+            TextStyle(color: Colors.white),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.compare_arrows, color: colors.onPrimary),
-            label: 'Troca',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.playlist_add_check, color: colors.onPrimary),
-            label: 'Histórico',
-          ),
-        ],
-        backgroundColor: Colors.transparent,
-        indicatorColor: colors.secondary,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        ),
+        child: NavigationBar(
+          onDestinationSelected: onItemTapped,
+          selectedIndex: selectedIndex,
+          backgroundColor: Colors.transparent,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+          destinations: <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.attach_money, color: colors.onPrimary),
+              label: 'Cotação',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.compare_arrows, color: colors.onPrimary),
+              label: 'Troca',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.playlist_add_check, color: colors.onPrimary),
+              label: 'Histórico',
+            ),
+          ],
+        ),
       ),
     );
   }

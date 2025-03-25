@@ -38,7 +38,11 @@ class _HistoricalScreenState extends State<HistoricalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Histórico de Conversões')),
+      appBar: AppBar(
+          title: const Text('Histórico de Conversões'
+
+          )
+      ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator()) // Indicador de carregamento
           : _errorMessage.isNotEmpty

@@ -98,53 +98,70 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.asset(
-          'assets/home_img.png',
+    return Container(
+      decoration: BoxDecoration(
+        image: const DecorationImage(
+          image: AssetImage('assets/home_img.png'),
           fit: BoxFit.cover,
         ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: isLoading
-                ? const CircularProgressIndicator()
-                : errorMessage.isNotEmpty
-                ? Text(
-              errorMessage,
-              style: TextStyle(color: colors.error, fontSize: 16),
-            )
-                : Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Cotação Atual",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: colors.onBackground,
-                  ),
+        gradient: LinearGradient(
+          colors: [colors.primary, colors.secondary],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: isLoading
+              ? const CircularProgressIndicator()
+              : errorMessage.isNotEmpty
+              ? Text(
+            errorMessage,
+            style: TextStyle(color: colors.error, fontSize: 16),
+          )
+              : Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Cotação Atual",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "USD: ${exchangeRates?['USD']?.toStringAsFixed(2)}",
-                  style: TextStyle(fontSize: 18, color: colors.primary),
-                ),
-                Text(
-                  "EUR: ${exchangeRates?['EUR']?.toStringAsFixed(2)}",
-                  style: TextStyle(fontSize: 18, color: colors.primary),
-                ),
-                Text(
-                  "GBP: ${exchangeRates?['GBP']?.toStringAsFixed(2)}",
-                  style: TextStyle(fontSize: 18, color: colors.primary),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 20),
+              _buildCurrencyCard("USD", "Dólar Americano", "💵"),
+              _buildCurrencyCard("EUR", "Euro", "💶"),
+              _buildCurrencyCard("GBP", "Libra Esterlina", "💷"),
+            ],
           ),
         ),
-      ],
+      ),
+    );
+  }
+
+  Widget _buildCurrencyCard(String currency, String label, String icon) {
+    return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: ListTile(
+        leading: Text(
+          icon,
+          style: const TextStyle(fontSize: 30),
+        ),
+        title: Text(
+          label,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        trailing: Text(
+          exchangeRates?[currency]?.toStringAsFixed(2) ?? "--",
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
