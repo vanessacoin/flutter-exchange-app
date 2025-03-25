@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Exchange Coin'),
         titleTextStyle: TextStyle(
           color: colors.onPrimary,
-          fontSize: 20,
+          fontSize: 26,
           fontWeight: FontWeight.bold,
         ),
         flexibleSpace: Container(
