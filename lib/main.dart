@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 
     MaterialTheme theme = MaterialTheme(textTheme);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'ExchengeApp',
       theme: brightness == Brightness.light ? theme.light() : theme.dark(),
       home: const SplashScreen(),

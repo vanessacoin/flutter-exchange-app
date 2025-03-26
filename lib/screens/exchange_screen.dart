@@ -51,12 +51,23 @@ class ExchangeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Valor',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
                         TextField(
                           onChanged: (value) {
                             provider.setAmount(double.tryParse(value) ?? 0);
                           },
                           decoration: InputDecoration(
-                            labelText: 'Valor',
                             labelStyle: TextStyle(color: colorScheme.onSurface),
                             filled: true,
                             fillColor: colorScheme.surfaceContainer.withOpacity(0.8),
